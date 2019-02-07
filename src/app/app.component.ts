@@ -15,10 +15,10 @@ export class AppComponent {
   public title = 'enjine';
 
   public columnDefs = [
-    { headerName: 'Field', field: 'field', sortable: true, filter: true },
-    { headerName: 'Left', field: 'left', sortable: true, filter: true },
-    { headerName: 'Right', field: 'right', sortable: true, filter: true },
-    { headerName: 'Difference', field: 'difference', sortable: true, filter: true }
+    { headerName: 'Field', field: 'field', sortable: true, filter: true, sort: 'asc' },
+    { headerName: 'Left', field: 'left', sortable: true, filter: true, valueFormatter: this.percentFormatter },
+    { headerName: 'Right', field: 'right', sortable: true, filter: true, valueFormatter: this.percentFormatter },
+    { headerName: 'Difference', field: 'difference', sortable: true, filter: true, valueFormatter: this.percentFormatter }
   ];
 
   public rowData: RowData[];
@@ -105,5 +105,13 @@ export class AppComponent {
       right: right,
       difference: difference
     });
+  }
+
+  private percentFormatter(value: any) {
+    if (!!value.value) {
+      return `${value.value}%`;
+    }
+
+    return '';
   }
 }
