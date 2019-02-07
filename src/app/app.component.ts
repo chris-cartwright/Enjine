@@ -109,7 +109,7 @@ export class AppComponent {
 
   private percentFormatter(value: any) {
     if (!!value.value) {
-      return `${value.value}%`;
+      return `${value.value.toFixed(5)}%`;
     }
 
     return '';
